@@ -5,10 +5,39 @@
     xmlns:local="using:GlazerCalcUWP_TylerMadsen"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <!--Title-->
+        <TextBlock HorizontalAlignment="Center" Margin="0,58,0,0" Text="Window Glazing Calculator" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
+        
+        <TextBlock HorizontalAlignment="Left" Text="Window Width:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,192,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBox x:Name="width" HorizontalAlignment="Left" Margin="327,186,0,0" Text="" VerticalAlignment="Top" InputScope="Number" FontSize="24"/>
+
+        <TextBlock HorizontalAlignment="Left" Text="Window Height:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,246,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBox x:Name="height" HorizontalAlignment="Left" Margin="327,240,0,0" Text="" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="24"/>
+
+        <TextBlock HorizontalAlignment="Left" Text="Quantity:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,334,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="quantity" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="192,334,0,0" FontSize="24" TextAlignment="Left"/>
+        <Slider x:Name="quantitySlider" HorizontalAlignment="Left" Margin="91,371,0,0" VerticalAlignment="Top" Width="300" Minimum="1" FontSize="24"/>
+
+        <TextBlock HorizontalAlignment="Left" Text="Tint Color:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,468,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <ComboBox HorizontalAlignment="Right" Margin="0,462,246,0" VerticalAlignment="Top" Width="145" FontSize="24" PlaceholderText="None">
+            <ComboBoxItem Content="Black" Background="Black" Foreground="Black"/>
+            <ComboBoxItem Content="Brown" Background="Brown" Foreground="White"/>
+            <ComboBoxItem Content="Blue" Background="Blue" Foreground="White"/>
+        </ComboBox>
+        
+        <TextBlock x:Name="lblWoodLength" HorizontalAlignment="Left" Text="Wood Length:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,612,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="woodLength" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,612,248,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        
+        <TextBlock x:Name="lblGlassArea" HorizontalAlignment="Left" Text="Glass Area:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,667,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="glassArea" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,667,247,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        
+        <TextBlock x:Name="lblOrderDate" HorizontalAlignment="Left" Text="Order Date:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,749,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="orderDate" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,749,246,0" Height="34" FontSize="24" TextAlignment="Left"/>
 
     </Grid>
 </Page>
