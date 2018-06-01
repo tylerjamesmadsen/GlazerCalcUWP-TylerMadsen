@@ -26,5 +26,10 @@ namespace GlazerCalcUWP_TylerMadsen
         {
             this.InitializeComponent();
         }
+
+        private void quantitySlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            this.quantity.Text = this.quantitySlider.Value.ToString();
+        }
     }
 }
