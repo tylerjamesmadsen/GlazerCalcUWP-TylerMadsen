@@ -33,19 +33,10 @@ namespace GlazerCalcUWP_TylerMadsen
             quantity.Text = quantitySlider.Value.ToString();
         }
 
-        private void input_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (validateNumericInput((TextBox)sender) == false)
-            {
-                return;
-            }
-        }
-
         private bool validateNumericInput(TextBox sender)
         {
             if (!Regex.IsMatch(sender.Text, @"^[1-9][0-9]{0,2}$"))
             {
-                sender.Text = "";
                 return false;
             }
             return true;
@@ -72,6 +63,7 @@ namespace GlazerCalcUWP_TylerMadsen
         {
             if (validateNumericInput((TextBox)sender) == false)
             {
+                Clear((TextBox)sender);
                 return;
             }
 
@@ -90,10 +82,11 @@ namespace GlazerCalcUWP_TylerMadsen
         {
             if (validateNumericInput((TextBox)sender) == false)
             {
+                Clear((TextBox)sender);
                 return;
             }
 
-            if (validateNumericInput(height) == true)
+            if (validateNumericInput(width) == true)
             {
                 woodLength.Text =
                     CalculateWoodLength(Int32.Parse(width.Text.ToString()), Int32.Parse(height.Text.ToString()))
@@ -102,6 +95,13 @@ namespace GlazerCalcUWP_TylerMadsen
                 CalculateGlassArea(Int32.Parse(width.Text.ToString()), Int32.Parse(height.Text.ToString()))
                 .ToString();
             }
+        }
+
+        private void Clear(TextBox sender)
+        {
+            sender.Text = "";
+            woodLength.Text = "";
+            glassArea.Text = "";
         }
     }
 }

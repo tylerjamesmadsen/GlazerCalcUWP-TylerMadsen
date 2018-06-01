@@ -19,7 +19,7 @@
         <TextBox x:Name="height" HorizontalAlignment="Left" Margin="327,198,0,0" Text="" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="24" TextChanged="height_TextChanged"/>
         <!--Quantity Slider-->
         <TextBlock HorizontalAlignment="Left" Text="Quantity:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,292,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBlock x:Name="quantity" HorizontalAlignment="Left" Text="HI" TextWrapping="Wrap" VerticalAlignment="Top" Margin="192,292,0,0" FontSize="24" TextAlignment="Left" TextDecorations="Underline"/>
+        <TextBlock x:Name="quantity" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="192,292,0,0" FontSize="24" TextAlignment="Left" TextDecorations="Underline"/>
         <Slider x:Name="quantitySlider" HorizontalAlignment="Left" Margin="91,329,0,0" VerticalAlignment="Top" Width="300" Minimum="1" FontSize="24" ValueChanged="quantitySlider_ValueChanged"/>
         <!--Tint-->
         <TextBlock HorizontalAlignment="Left" Text="Tint Color:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,396,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
@@ -30,13 +30,13 @@
         </ComboBox>
         <!--Display-->
         <TextBlock x:Name="lblWoodLength" HorizontalAlignment="Left" Text="Wood Length:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,536,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBlock x:Name="woodLength" HorizontalAlignment="Right" Text="HI" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,536,245,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="woodLength" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,536,245,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <TextBlock x:Name="lblGlassArea" HorizontalAlignment="Left" Text="Glass Area:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,573,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBlock x:Name="glassArea" HorizontalAlignment="Right" Text="HI" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,573,245,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="glassArea" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,573,245,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <TextBlock x:Name="lblOrderDate" HorizontalAlignment="Left" Text="Order Date:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,629,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBlock x:Name="orderDate" HorizontalAlignment="Right" Text="HI" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,629,245,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="orderDate" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,629,245,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <!--Order Button-->
-        <Button x:Name="btnOrderButton" Content="Place Order" HorizontalAlignment="Left" Margin="255,463,0,0" VerticalAlignment="Top" Height="49" Width="139" Click="btnOrderButton_Click" FontSize="18" FontFamily="Segoe UI"/>
+        <Button x:Name="btnOrderButton" Content="Place Order" HorizontalAlignment="Right" Margin="0,463,246,0" VerticalAlignment="Top" Height="49" Width="139" Click="btnOrderButton_Click" FontSize="18" FontFamily="Segoe UI"/>
 
     </Grid>
 </Page>
