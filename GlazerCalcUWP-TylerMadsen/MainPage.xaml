@@ -14,9 +14,9 @@
         <TextBlock HorizontalAlignment="Center" Margin="0,58,0,0" Text="Window Glazing Calculator" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
         <!--Width & Height-->
         <TextBlock HorizontalAlignment="Left" Text="Window Width:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,150,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBox x:Name="width" HorizontalAlignment="Left" Margin="327,144,0,0" Text="" VerticalAlignment="Top" InputScope="Number" FontSize="24"/>
+        <TextBox x:Name="width" HorizontalAlignment="Left" Margin="327,144,0,0" Text="" VerticalAlignment="Top" InputScope="Number" FontSize="24" TextChanged="width_TextChanged"/>
         <TextBlock HorizontalAlignment="Left" Text="Window Height:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,204,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBox x:Name="height" HorizontalAlignment="Left" Margin="327,198,0,0" Text="" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="24"/>
+        <TextBox x:Name="height" HorizontalAlignment="Left" Margin="327,198,0,0" Text="" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="24" TextChanged="height_TextChanged"/>
         <!--Quantity Slider-->
         <TextBlock HorizontalAlignment="Left" Text="Quantity:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,292,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <TextBlock x:Name="quantity" HorizontalAlignment="Left" Text="HI" TextWrapping="Wrap" VerticalAlignment="Top" Margin="192,292,0,0" FontSize="24" TextAlignment="Left" TextDecorations="Underline"/>
@@ -36,7 +36,7 @@
         <TextBlock x:Name="lblOrderDate" HorizontalAlignment="Left" Text="Order Date:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,629,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <TextBlock x:Name="orderDate" HorizontalAlignment="Right" Text="HI" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,629,245,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <!--Order Button-->
-        <Button x:Name="orderButton" Content="Order Window(s)" HorizontalAlignment="Left" Margin="255,463,0,0" VerticalAlignment="Top" Height="49" Width="139"/>
+        <Button x:Name="btnOrderButton" Content="Place Order" HorizontalAlignment="Left" Margin="255,463,0,0" VerticalAlignment="Top" Height="49" Width="139" Click="btnOrderButton_Click" FontSize="18" FontFamily="Segoe UI"/>
 
     </Grid>
 </Page>
