@@ -14,13 +14,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace GlazerCalcUWP_TylerMadsen
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
         public MainPage()
@@ -28,25 +23,28 @@ namespace GlazerCalcUWP_TylerMadsen
             this.InitializeComponent();
         }
 
-        private void quantitySlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void inputQuantitySlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            quantity.Text = quantitySlider.Value.ToString();
+            txtQuantity.Text = inputQuantitySlider.Value.ToString();
+            if (ValidateTextBoxInput(inputWidth) && ValidateTextBoxInput(inputHeight))
+            {
+                DisplayTotals();
+            }
+
+            if (orderDate != null)
+            {
+                ClearDate();
+            }
         }
 
-        private bool validateNumericInput(TextBox sender)
+        private bool ValidateTextBoxInput(TextBox sender)
         {
-            if (!Regex.IsMatch(sender.Text, @"^[1-9][0-9]{0,2}$"))
+            if (!Regex.IsMatch(sender.Text, @"^[1-9][0-9]{0,1}$"))
             {
                 return false;
             }
-            return true;
-        }
 
-        private void btnOrderButton_Click(object sender, RoutedEventArgs e)
-        {
-            //woodLength.Text = CalculateWoodLength().ToString();
-            //glassArea.Text = CalculateGlassArea().ToString();
-            orderDate.Text = DateTime.Now.ToShortDateString();
+            return true;
         }
 
         private double CalculateWoodLength(int width, int height)
@@ -54,54 +52,192 @@ namespace GlazerCalcUWP_TylerMadsen
             return 2 * (width + height) * 3.25;
         }
 
+        private double CalculateTotalWoodlength()
+        {
+            return CalculateWoodLength(
+                Int32.Parse(inputWidth.Text), 
+                Int32.Parse(inputHeight.Text)) 
+                * inputQuantitySlider.Value;
+        }
+
         private int CalculateGlassArea(int width, int height)
         {
             return 2 * (width + height);
         }
 
+        private double CalculateTotalGlassArea()
+        {
+            return CalculateGlassArea(
+                Int32.Parse(inputWidth.Text),
+                Int32.Parse(inputHeight.Text)) 
+                * inputQuantitySlider.Value;
+        }
+
         private void width_TextChanged(Object sender, TextChangedEventArgs e)
         {
-            if (validateNumericInput((TextBox)sender) == false)
+            ClearInputErrorWidth();
+
+            if (ValidateTextBoxInput((TextBox)sender) == false)
             {
                 Clear((TextBox)sender);
+                DisplayInputErrorWidth();
                 return;
             }
 
-            if (validateNumericInput(height) == true)
+            if (ValidateTextBoxInput(inputHeight))
             {
-                woodLength.Text =
-                    CalculateWoodLength(Int32.Parse(width.Text.ToString()), Int32.Parse(height.Text.ToString()))
-                    .ToString();
-                glassArea.Text =
-                CalculateGlassArea(Int32.Parse(width.Text.ToString()), Int32.Parse(height.Text.ToString()))
-                .ToString();
+                ClearErrorOrder();
+                DisplayResults();
             }
+
+            ClearDate();
         }
 
         private void height_TextChanged(Object sender, TextChangedEventArgs e)
         {
-            if (validateNumericInput((TextBox)sender) == false)
+            ClearInputErrorHeight();
+
+            if (ValidateTextBoxInput((TextBox)sender) == false)
             {
                 Clear((TextBox)sender);
+                DisplayInputErrorHeight();
                 return;
             }
 
-            if (validateNumericInput(width) == true)
+            if (ValidateTextBoxInput(inputWidth))
             {
-                woodLength.Text =
-                    CalculateWoodLength(Int32.Parse(width.Text.ToString()), Int32.Parse(height.Text.ToString()))
-                    .ToString();
-                glassArea.Text =
-                CalculateGlassArea(Int32.Parse(width.Text.ToString()), Int32.Parse(height.Text.ToString()))
-                .ToString();
+                ClearErrorOrder();
+                DisplayResults();
             }
+
+            ClearDate();
         }
 
         private void Clear(TextBox sender)
         {
             sender.Text = "";
+            ClearResults();
+            ClearDate();
+        }
+
+        private void ClearResults()
+        {
             woodLength.Text = "";
             glassArea.Text = "";
+            lblWoodLength.Visibility = Visibility.Collapsed;
+            lblGlassArea.Visibility = Visibility.Collapsed;
+            lblUnitsFeet.Visibility = Visibility.Collapsed;
+            lblUnitsSquareMeters.Visibility = Visibility.Collapsed;
+
+            totalWoodLength.Text = "";
+            totalGlassArea.Text = "";
+            lblTotalWoodLength.Visibility = Visibility.Collapsed;
+            lblTotalGlassArea.Visibility = Visibility.Collapsed;
+            lblUnitsTotalFeet.Visibility = Visibility.Collapsed;
+            lblUnitsTotalSquareMeters.Visibility = Visibility.Collapsed;
+        }
+
+        private void DisplayResults()
+        {
+            lblWoodLength.Visibility = Visibility.Visible;
+            lblGlassArea.Visibility = Visibility.Visible;
+
+            woodLength.Text = CalculateWoodLength(
+                Int32.Parse(inputWidth.Text),
+                Int32.Parse(inputHeight.Text))
+                .ToString();
+            lblUnitsFeet.Visibility = Visibility.Visible;
+            glassArea.Text = CalculateGlassArea(
+                Int32.Parse(inputWidth.Text.ToString()),
+                Int32.Parse(inputHeight.Text.ToString()))
+            .ToString();
+            lblUnitsSquareMeters.Visibility = Visibility.Visible;
+
+            DisplayTotals();
+        }
+
+        private void DisplayTotals()
+        {
+            lblTotalWoodLength.Visibility = Visibility.Visible;
+            lblTotalGlassArea.Visibility = Visibility.Visible;
+            totalWoodLength.Text = CalculateTotalWoodlength().ToString();
+            lblUnitsTotalFeet.Visibility = Visibility.Visible;
+            totalGlassArea.Text = CalculateTotalGlassArea().ToString();
+            lblUnitsTotalSquareMeters.Visibility = Visibility.Visible;
+        }
+
+        private void DisplayErrors()
+        {
+            DisplayInputErrorWidth();
+            DisplayInputErrorHeight();
+            DisplayErrorOrder();
+        }
+
+        private void DisplayInputErrorWidth()
+        {
+            if (ValidateTextBoxInput(inputWidth) == false)
+            {
+                errorWidthInput.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void DisplayInputErrorHeight()
+        {
+            if (ValidateTextBoxInput(inputHeight) == false)
+            {
+                errorHeightInput.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void DisplayErrorOrder()
+        {
+            errorPlaceOrder.Visibility = Visibility.Visible;
+        }
+
+        private void ClearErrors()
+        {
+            ClearInputErrorWidth();
+            ClearInputErrorHeight();
+            ClearErrorOrder();
+        }
+
+        private void ClearInputErrorWidth()
+        {
+            errorWidthInput.Visibility = Visibility.Collapsed;
+        }
+
+        private void ClearInputErrorHeight()
+        {
+            errorHeightInput.Visibility = Visibility.Collapsed;
+        }
+
+        private void ClearErrorOrder()
+        {
+            errorPlaceOrder.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ValidateTextBoxInput(inputWidth) == false ||
+                ValidateTextBoxInput(inputHeight) == false)
+            {
+                DisplayErrorOrder();
+                return;
+            }
+
+            DisplayDate();
+        }
+
+        private void DisplayDate()
+        {
+            lblOrderDate.Visibility = Visibility.Visible;
+            orderDate.Text = DateTime.Now.ToLongDateString();
+        }
+
+        private void ClearDate()
+        {
+            lblOrderDate.Visibility = Visibility.Collapsed;
+            orderDate.Text = "";
         }
     }
 }

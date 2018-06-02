@@ -9,34 +9,56 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid MinWidth="640" MinHeight="1024" MaxWidth="640" MaxHeight="1024">
         <!--Title-->
         <TextBlock HorizontalAlignment="Center" Margin="0,58,0,0" Text="Window Glazing Calculator" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
         <!--Width & Height-->
         <TextBlock HorizontalAlignment="Left" Text="Window Width:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,150,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBox x:Name="width" HorizontalAlignment="Left" Margin="327,144,0,0" Text="" VerticalAlignment="Top" InputScope="Number" FontSize="24" TextChanged="width_TextChanged"/>
+        <TextBox x:Name="inputWidth" HorizontalAlignment="Left" Margin="327,144,0,0" Text="" VerticalAlignment="Top" InputScope="Number" FontSize="24" TextChanged="width_TextChanged"/>
+        <TextBlock HorizontalAlignment="Left" Text="meters" TextWrapping="Wrap" VerticalAlignment="Top" Margin="396,150,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <TextBlock HorizontalAlignment="Left" Text="Window Height:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,204,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBox x:Name="height" HorizontalAlignment="Left" Margin="327,198,0,0" Text="" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="24" TextChanged="height_TextChanged"/>
+        <TextBox x:Name="inputHeight" HorizontalAlignment="Left" Margin="327,198,0,0" Text="" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="24" TextChanged="height_TextChanged"/>
+        <TextBlock HorizontalAlignment="Left" Text="meters" TextWrapping="Wrap" VerticalAlignment="Top" Margin="396,204,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <!--Quantity Slider-->
         <TextBlock HorizontalAlignment="Left" Text="Quantity:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,292,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBlock x:Name="quantity" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="192,292,0,0" FontSize="24" TextAlignment="Left" TextDecorations="Underline"/>
-        <Slider x:Name="quantitySlider" HorizontalAlignment="Left" Margin="91,329,0,0" VerticalAlignment="Top" Width="300" Minimum="1" FontSize="24" ValueChanged="quantitySlider_ValueChanged"/>
+        <TextBlock x:Name="txtQuantity" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="192,292,0,0" FontSize="24" TextAlignment="Left" TextDecorations="Underline"/>
+        <Slider x:Name="inputQuantitySlider" HorizontalAlignment="Left" Margin="91,329,0,0" VerticalAlignment="Top" Width="300" Minimum="1" FontSize="24" ValueChanged="inputQuantitySlider_ValueChanged"/>
         <!--Tint-->
         <TextBlock HorizontalAlignment="Left" Text="Tint Color:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,396,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <ComboBox HorizontalAlignment="Right" Margin="0,390,246,0" VerticalAlignment="Top" Width="145" FontSize="24" PlaceholderText="None">
+            <ComboBoxItem Content="None" Background="Gray" Foreground="White"/>
             <ComboBoxItem Content="Black" Background="Black" Foreground="White"/>
             <ComboBoxItem Content="Brown" Background="Brown" Foreground="White"/>
             <ComboBoxItem Content="Blue" Background="Blue" Foreground="White"/>
         </ComboBox>
         <!--Display-->
-        <TextBlock x:Name="lblWoodLength" HorizontalAlignment="Left" Text="Wood Length:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,536,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="lblWoodLength" Visibility="Collapsed" HorizontalAlignment="Left" Text="Wood Length:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,536,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <TextBlock x:Name="woodLength" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,536,245,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBlock x:Name="lblGlassArea" HorizontalAlignment="Left" Text="Glass Area:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,573,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="lblUnitsFeet" Visibility="Collapsed" HorizontalAlignment="Left" Text="feet" TextWrapping="Wrap" VerticalAlignment="Top" Margin="400,536,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="lblGlassArea" Visibility="Collapsed" HorizontalAlignment="Left" Text="Glass Area:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,573,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <TextBlock x:Name="glassArea" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,573,245,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBlock x:Name="lblOrderDate" HorizontalAlignment="Left" Text="Order Date:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,629,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
-        <TextBlock x:Name="orderDate" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,629,245,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="lblUnitsSquareMeters" Visibility="Collapsed" HorizontalAlignment="Left" Text="sq. meters" TextWrapping="Wrap" VerticalAlignment="Top" Margin="400,573,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <!--Display Totals-->
+        <TextBlock x:Name="lblTotalWoodLength" Visibility="Collapsed" HorizontalAlignment="Left" Text="Total Wood Length:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,634,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="totalWoodLength" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,634,244,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="lblUnitsTotalFeet" Visibility="Collapsed" HorizontalAlignment="Left" Text="feet" TextWrapping="Wrap" VerticalAlignment="Top" Margin="400,634,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="lblTotalGlassArea" Visibility="Collapsed" HorizontalAlignment="Left" Text="Total Glass Area:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,671,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="totalGlassArea" HorizontalAlignment="Right" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,671,244,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="lblUnitsTotalSquareMeters" Visibility="Collapsed" HorizontalAlignment="Left" Text="sq. meters" TextWrapping="Wrap" VerticalAlignment="Top" Margin="400,671,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <!--Display Order Date-->
+        <TextBlock x:Name="lblOrderDate" Visibility="Collapsed" HorizontalAlignment="Left" Text="Order Date:" TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,737,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
+        <TextBlock x:Name="orderDate" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Margin="255,737,0,0" Height="34" FontSize="24" TextAlignment="Left"/>
         <!--Order Button-->
-        <Button x:Name="btnOrderButton" Content="Place Order" HorizontalAlignment="Right" Margin="0,463,246,0" VerticalAlignment="Top" Height="49" Width="139" Click="btnOrderButton_Click" FontSize="18" FontFamily="Segoe UI"/>
+        <Button x:Name="btnOrderButton" Content="Place Order" HorizontalAlignment="Right" Margin="0,463,246,0" VerticalAlignment="Top" Height="49" Width="145" Click="btnOrderButton_Click" FontSize="18" FontFamily="Segoe UI" Background="#5900FF17" BorderBrush="#FFD6D6D6"/>
+        <!--Error Messages-->
+        <TextBlock x:Name="errorPlaceOrder" Visibility="Collapsed" HorizontalAlignment="Left" Text="Please correct your errors and try again." TextWrapping="Wrap" VerticalAlignment="Top" Margin="91,514,0,0" Height="34" FontSize="20" TextAlignment="Left" Foreground="Red"/>
+        <TextBlock x:Name ="errorWidthInput" Visibility="Collapsed" HorizontalAlignment="Left"
+                   Text="Please enter a 
+                   valid width."
+                   TextWrapping="Wrap" VerticalAlignment="Top" Margin="473,144,0,0" Height="50" FontSize="14" TextAlignment="Left" Foreground="Red"/>
+        <TextBlock x:Name="errorHeightInput" Visibility="Collapsed" HorizontalAlignment="Left"
+            Text="Please enter a                     valid height."
+            TextWrapping="Wrap" VerticalAlignment="Top" Margin="473,198,0,0" Height="51" FontSize="14" TextAlignment="Left" Foreground="Red"/>
 
     </Grid>
 </Page>
